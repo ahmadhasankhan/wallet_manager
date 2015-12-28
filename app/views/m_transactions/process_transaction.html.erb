@@ -1,0 +1,16 @@
+<h1> Choose your Payment method </h1>
+<h2>Payable amount : Rs <%= @transaction.amount %></h2>
+<%= form_tag({action: 'bank', controller: 'home'}, {:method => :post}) do |f| %>
+
+    <!--TODO: show fields based on selection -->
+    <%= check_box_tag "tsn_type", 'CreditCard', :id => "cc", :checked=> true %> Credit Card
+    <%= check_box_tag "tsn_type", 'InternetBanking', :id => "inb", :checked=> false %> Internet banking
+
+
+    <%= hidden_field_tag 'ref_id',  @transaction.reference_no %>
+    <%= hidden_field_tag 'amount',  @transaction.amount %>
+    <%= submit_tag 'Pay Now' %>
+    <%= link_to "Cancel", failure_callback_m_transactions_path(:ref_id => params[:ref_id]) %>
+<% end %>
+
+

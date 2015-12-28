@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing M Transactions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Account</th>
+      <th>Reference no</th>
+      <th>Amount</th>
+      <th>Transaction type</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @m_transactions.each do |m_transaction| %>
+      <tr>
+        <td><%= m_transaction.account_id %></td>
+        <td><%= m_transaction.reference_no %></td>
+        <td><%= m_transaction.amount %></td>
+        <td><%= m_transaction.transaction_type %></td>
+        <td><%= m_transaction.status %></td>
+        <td><%= link_to 'Show', m_transaction %></td>
+        <td><%= link_to 'Edit', edit_m_transaction_path(m_transaction) %></td>
+        <td><%= link_to 'Destroy', m_transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New M transaction', new_m_transaction_path %>

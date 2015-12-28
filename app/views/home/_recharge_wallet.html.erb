@@ -1,0 +1,9 @@
+<%= form_for @m_transaction ||= MTransaction.new, :html => {:class => "navbar-form"} do |f| %>
+
+    <%= f.hidden_field :transaction_type, :value => "credit" %>
+    <div class="input-group input-group-lg" style="max-width:360px;">
+        <%= f.number_field :amount, :class => "form-control", :placeholder => "Amount" %>
+    </div>
+    <%= f.submit("Add Money To Wallet", :class => "btn btn-primary btn-lg") %>
+<% end %>
+

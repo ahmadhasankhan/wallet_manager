@@ -1,0 +1,33 @@
+<%= form_for(@account) do |f| %>
+  <% if @account.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
+
+      <ul>
+      <% @account.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :balance %><br>
+    <%= f.text_field :balance %>
+  </div>
+  <div class="field">
+    <%= f.label :monthly_limit %><br>
+    <%= f.text_field :monthly_limit %>
+  </div>
+  <div class="field">
+    <%= f.label :limit %><br>
+    <%= f.text_field :limit %>
+  </div>
+  <div class="field">
+    <%= f.label :active %><br>
+    <%= f.check_box :active %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

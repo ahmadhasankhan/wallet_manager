@@ -1,11 +1,21 @@
 Rails.application.routes.draw do
-  get 'home/index'
-
+  resources :m_transactions do
+    collection do
+      get 'failure_callback'
+      get 'confirmation_callback'
+    end
+  end
+  resources :refunds
+  resources :accounts
   resources :users
 
+  post 'payment' => 'home#payment'
+  post 'bank' => 'home#bank'
+  get 'myaccount' => 'accounts#my_account', as: :myaccount
+  get 'process_transaction' => 'm_transactions#process_transaction', as: :process_transaction
   match 'login' => 'user_sessions#new', :as => :login, via: [:get, :post]
   match 'logout' => 'user_sessions#destroy', :as => :logout, via: [:get, :post]
-  resources :user_sessions,  :only => [:new,:create, :destroy]
+  resources :user_sessions, :only => [:new, :create, :destroy]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

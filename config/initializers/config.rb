@@ -1,0 +1,1 @@
+CONSTANT_DATA = YAML.load_file("#{Rails.root.to_s}/config/constant_values.yml")[Rails.env]

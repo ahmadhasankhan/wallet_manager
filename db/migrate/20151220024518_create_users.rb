@@ -1,7 +1,8 @@
 class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
-      t.string :email
+      t.string :email, :index => true
+      t.string :mobile, :limit => 12, :index => true
       t.string :crypted_password
       t.string :password_salt
       t.string :persistence_token
@@ -15,7 +16,7 @@ class CreateUsers < ActiveRecord::Migration
       t.datetime :last_login_at
       t.string :current_login_ip
       t.string :last_login_ip
-      t.boolean :active, default: false
+      t.boolean :active, default: true
       t.boolean :confirmed, default: false
 
       t.timestamps null: false

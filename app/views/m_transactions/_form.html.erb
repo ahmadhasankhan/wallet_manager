@@ -1,0 +1,22 @@
+<%= form_for(@m_transaction, :html => {:class => "navbar-form"}) do |f| %>
+    <% if @m_transaction.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@m_transaction.errors.count, "error") %> prohibited this m_transaction from being
+                saved:</h2>
+            <ul>
+                <% @m_transaction.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="input-group input-group-lg" style="max-width:360px;">
+        <%= f.label :amount %><br>
+        <%= f.text_field :amount, :class => "form-control", :placeholder => "Amount" %>
+    </div>
+    <%= f.hidden_field :transaction_type, :value => params[:type] %>
+
+    <%= f.submit("Add Money To Wallet", :class => "btn btn-primary btn-lg") %>
+
+<% end %>

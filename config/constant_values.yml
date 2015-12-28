@@ -1,0 +1,6 @@
+development:
+  monthly_limit: 10000
+test:
+
+production:
+  monthly_limit: 10000

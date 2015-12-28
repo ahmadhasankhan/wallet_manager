@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  balance: 
+  max_limit: 
+  limit: 
+  active: false
+
+two:
+  balance: 
+  max_limit: 
+  limit: 
+  active: false

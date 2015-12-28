@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Transaction:</strong>
+  <%= @refund.transaction_id %>
+</p>
+
+<p>
+  <strong>Approved:</strong>
+  <%= @refund.approved %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @refund.status %>
+</p>
+
+<p>
+  <strong>Reason:</strong>
+  <%= @refund.reason %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @refund.comment %>
+</p>
+
+<%= link_to 'Edit', edit_refund_path(@refund) %> |
+<%= link_to 'Back', refunds_path %>
