@@ -1,16 +1,116 @@
-<h1> Choose your Payment method </h1>
-<h2>Payable amount : Rs <%= @transaction.amount %></h2>
-<%= form_tag({action: 'bank', controller: 'home'}, {:method => :post}) do |f| %>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3 col-md-3">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <span class="glyphicon glyphicon-folder-close">
+                            </span> Payment Method
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr class="active">
+                                    <td>
+                                        <i class="fa fa-credit-card"></i>
+                                        <a href="#">Credit
+                                            Card</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <i class="fa fa-cc-mastercard"></i>
+                                        <a href="#">Debit
+                                            Card</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <i class="fa fa-university"></i>
+                                        <a href="#">Internet
+                                            Banking</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
 
-    <!--TODO: show fields based on selection -->
-    <%= check_box_tag "tsn_type", 'CreditCard', :id => "cc", :checked=> true %> Credit Card
-    <%= check_box_tag "tsn_type", 'InternetBanking', :id => "inb", :checked=> false %> Internet banking
+            </div>
+        </div>
+        <div class="col-sm-9 col-md-9">
+            <div class="well">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-4">
+                            <%= form_tag({action: 'bank', controller: 'home'}, {:method => :post}) do |f| %>
+                                <%= hidden_field_tag 'tsn_mode', 'cc' %>
+                                <%= hidden_field_tag 'ref_id', @transaction.reference_no %>
+                                <%= hidden_field_tag 'amount', @transaction.amount %>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">
+                                            Payment Details <i class="fa fa-cc-visa"></i>
+                                            <i class="fa fa-credit-card"></i> <i class="fa fa-cc-amex"></i>
+                                        </h3>
 
+                                        <div class="checkbox pull-right">
+                                            <label>
+                                                <input type="checkbox"/>
+                                                Remember
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            <label for="cardNumber">
+                                                CARD NUMBER</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="cardNumber" placeholder="Valid Card Number"
+                                                       required autofocus/>
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-7 col-md-7">
+                                                <div class="form-group">
+                                                    <label for="expityMonth">
+                                                        EXPIRY DATE</label>
 
-    <%= hidden_field_tag 'ref_id',  @transaction.reference_no %>
-    <%= hidden_field_tag 'amount',  @transaction.amount %>
-    <%= submit_tag 'Pay Now' %>
-    <%= link_to "Cancel", failure_callback_m_transactions_path(:ref_id => params[:ref_id]) %>
-<% end %>
-
-
+                                                    <div class="col-xs-6 col-lg-6 pl-ziro">
+                                                        <input type="text" class="form-control" id="expiry_month" placeholder="MM" required/>
+                                                    </div>
+                                                    <div class="col-xs-6 col-lg-6 pl-ziro">
+                                                        <input type="text" class="form-control" id="expiry_year" placeholder="YY" required/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-5 col-md-5 pull-right">
+                                                <div class="form-group">
+                                                    <label for="cvCode">
+                                                        CVV No</label>
+                                                    <input type="password" class="form-control" id="cv_code" placeholder="CV" required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li class="active">
+                                        <a href="#"><span class="badge pull-right"><i class="fa fa-inr"></i>
+                                            <%= @transaction.amount %></span>
+                                            Total Payable</a>
+                                    </li>
+                                </ul>
+                                <br/>
+                                <%= submit_tag 'Pay Now', :class => "btn btn-success btn-lg btn-block" %>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

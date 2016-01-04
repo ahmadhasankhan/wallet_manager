@@ -29,12 +29,13 @@ ActiveRecord::Schema.define(version: 20151220145433) do
   create_table "m_transactions", force: :cascade do |t|
     t.integer  "account_id",       limit: 4
     t.string   "reference_no",     limit: 255
-    t.decimal  "amount",                       precision: 10
+    t.decimal  "amount",                         precision: 15, scale: 4, default: 0.0, null: false
     t.string   "transaction_type", limit: 255
     t.string   "transaction_mode", limit: 255
     t.integer  "status",           limit: 4
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.text     "details",          limit: 65535
+    t.datetime "created_at",                                                            null: false
+    t.datetime "updated_at",                                                            null: false
   end
 
   add_index "m_transactions", ["account_id"], name: "index_m_transactions_on_account_id", using: :btree

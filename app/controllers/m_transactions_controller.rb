@@ -65,11 +65,9 @@ class MTransactionsController < ApplicationController
   end
 
   def confirmation_callback
-    p params
     @transaction = MTransaction.find_by_reference_no(params[:ref_id])
-    if @transaction
-      @transaction.update_attribute('status', 4)
-      redirect_to account_path, notice: 'Transaction was successful.'
+    if @transaction && (@transaction.validate_callback_transaction_details(params))
+      redirect_to root_path, notice: 'Transaction was successful.'
     else
       redirect_to root_path, alert: 'Transaction Was Failed.'
     end
